@@ -6,7 +6,12 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   devtool: "eval-source-map",
-  entry: "./src/index.js",
+  entry: {
+    app: [
+      "react-app-polyfill/stable",
+      "./src/index.js"
+    ]
+  },
   output: {
     path: path.resolve("dist"),
     filename: "index_bundle.js",
@@ -15,7 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader"}, { loader: "css-loader"}]
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
       },
       {
         test: /\.js$/,
