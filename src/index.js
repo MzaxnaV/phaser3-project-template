@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 import logoImg from './assets/logo.png';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from '../component/App.jsx';
 
 class MyGame extends Phaser.Scene
 {
@@ -37,3 +40,7 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+const container = document.getElementById('app');
+const root = createRoot(container)
+root.render(<App />);
