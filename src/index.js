@@ -8,7 +8,7 @@ class MyGame extends Phaser.Scene
 {
     constructor ()
     {
-        super();
+        super("PlayGame");
     }
 
     preload ()
@@ -29,6 +29,33 @@ class MyGame extends Phaser.Scene
             loop: -1
         });
     }
+
+    update() {
+        var pointer = this.input.activePointer;
+        this.input.mouse.disableContextMenu();
+
+        var wKey = this.input.keyboard.addKey('W');
+        wKey.on('down', function (event) {
+            if (counter.give < 1) {
+                console.log("TEZOS GIVEN WITH KEYBOARD, W!!!");
+            }
+            counter.give += 1;
+        });
+        wKey.on('up', function (event) {
+            counter.give = 0;
+        });
+
+        var aKey = this.input.keyboard.addKey('A');
+        aKey.on('down', function (event) {
+            if (counter.take < 1) {
+                console.log("TEZOS TAKEN WITH KEYBOARD, A!!!");
+            }
+            counter.take += 1;
+        });
+        aKey.on('up', function (event) {
+            counter.take = 0;
+        });
+    }
 }
 
 const config = {
@@ -36,6 +63,7 @@ const config = {
     parent: 'phaser-example',
     width: 800,
     height: 600,
+    disableContextMenu: false,
     scene: MyGame
 };
 
